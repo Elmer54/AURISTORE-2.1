@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,21 +27,41 @@
 <div class="main-content">
 
 <header>
-<button class="login-btn">SIGN IN</button>
+<button class="login-btn" onclick="openAuth()">SIGN IN</button>
+<button class="cart-btn" onclick="toggleCart()">🛒 Carrito</button>
 </header>
 
 <section class="hero">
 <h2>WELCOME TO</h2>
 <h1>AURIASTORE</h1>
-<p>Marketplace premium para FiveM con scripts, packs, mapas y contenido exclusivo.</p>
+<p>Marketplace premium para FiveM con scripts, packs y contenido exclusivo.</p>
 </section>
 
 <section class="products" id="productsContainer"></section>
 
 </div>
 
+<div class="cart-panel" id="cartPanel">
+<h2>Carrito</h2>
+<div id="cartItems"></div>
+<h3 id="cartTotal">Total: $0</h3>
+<button class="buy-btn" onclick="checkout()">Comprar</button>
+</div>
+
+<div class="auth-modal" id="authModal">
+<div class="auth-box">
+<h2>Ingresar / Registro</h2>
+
+<input type="text" id="username" placeholder="Usuario">
+<input type="email" id="email" placeholder="Correo">
+<input type="password" id="password" placeholder="Contraseña">
+
+<button onclick="registerUser()">Registrarse</button>
+<button onclick="loginUser()">Ingresar</button>
+<button onclick="closeAuth()">Cerrar</button>
+</div>
+</div>
+
 <script src="app.js"></script>
 </body>
-</html>
-
 </html>
