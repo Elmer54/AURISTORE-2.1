@@ -144,6 +144,12 @@ localStorage.setItem('cart', JSON.stringify(cart));
 
 updateCart();
 
+closeCart();
+
+}
+
+function closeCart(){
+
 document.getElementById('cartPanel')
 .classList.remove('active');
 
