@@ -9,34 +9,65 @@
 <body>
 
 <div class="sidebar">
-    <div class="logo">
-        <h1>AURIA</h1>
-        <span>STORE</span>
-    </div>
 
-    <nav>
-        <a class="category-btn active" data-category="all">Home</a>
-        <a class="category-btn" data-category="scripts">Scripts</a>
-        <a class="category-btn" data-category="maps">Maps</a>
-        <a class="category-btn" data-category="packs">Packs</a>
-        <a href="admin.html">Admin</a>
-    </nav>
+<div class="logo">
+<h1>AURIA</h1>
+<span>STORE</span>
+</div>
+
+<nav>
+<a class="category-btn active" data-category="all">Home</a>
+<a class="category-btn" data-category="scripts">Scripts</a>
+<a class="category-btn" data-category="maps">Maps</a>
+<a class="category-btn" data-category="packs">Packs</a>
+<a href="admin.html">Admin</a>
+</nav>
+
 </div>
 
 <div class="main-content">
 
-<header>
-<button class="login-btn">SIGN IN</button>
+<header class="topbar">
+<button class="login-btn" onclick="openAuth()">SIGN IN</button>
+
+<div class="cart-box" onclick="toggleCart()">
+🛒 <span id="cartCount">0</span>
+</div>
 </header>
 
 <section class="hero">
 <h2>WELCOME TO</h2>
 <h1>AURIASTORE</h1>
-<p>Marketplace premium para FiveM con scripts, packs, mapas y contenido exclusivo.</p>
+<p>Marketplace premium para FiveM con scripts, packs y mapas exclusivos.</p>
 </section>
 
 <section class="products" id="productsContainer"></section>
 
+</div>
+
+<div class="cart-panel" id="cartPanel">
+<h2>Carrito</h2>
+<div id="cartItems"></div>
+<h3>Total: <span id="cartTotal">$0</span></h3>
+
+<select id="paymentMethod">
+<option value="Tarjeta de Crédito">Tarjeta de Crédito</option>
+<option value="Transferencia Bancaria">Transferencia Bancaria</option>
+</select>
+
+<button onclick="checkout()">Comprar</button>
+</div>
+
+<div class="auth-modal" id="authModal">
+<div class="auth-box">
+<h2>Registro / Login</h2>
+<input type="text" id="userName" placeholder="Nombre">
+<input type="email" id="userEmail" placeholder="Correo">
+<input type="password" id="userPassword" placeholder="Contraseña">
+<button onclick="registerUser()">Registrarse</button>
+<button onclick="loginUser()">Ingresar</button>
+<button onclick="closeAuth()">Cerrar</button>
+</div>
 </div>
 
 <script src="app.js"></script>
