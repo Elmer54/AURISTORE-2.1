@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Administrador</title>
+<title>Admin</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -16,25 +16,13 @@
 <h2>PANEL</h2>
 <h1>ADMINISTRADOR</h1>
 
-<div class="admin-form">
+<h2>Movimientos / Usuarios</h2>
+<div id="users"></div>
 
-<input type="text" id="name" placeholder="Nombre producto">
+<br><br>
 
-<input type="text" id="price" placeholder="Precio">
-
-<select id="category">
-<option value="scripts">Scripts</option>
-<option value="maps">Maps</option>
-<option value="packs">Packs</option>
-</select>
-
-<input type="file" id="imageInput" accept=".png,.jpg,.jpeg,.webp">
-
-<img id="preview" class="preview-image" style="display:none;">
-
-<button onclick="addProduct()">Agregar Producto</button>
-
-</div>
+<h2>Compras realizadas</h2>
+<div id="orders"></div>
 
 </section>
 
