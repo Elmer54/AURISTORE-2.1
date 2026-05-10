@@ -1,15 +1,15 @@
 let products = JSON.parse(localStorage.getItem('products')) || [
 {
-name:'PACK PREMIUM',
-price:28,
-category:'packs',
-image:'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop'
+name:'productos auria',
+price:5,
+category:'maps',
+image:'https://picsum.photos/600/400?1'
 },
 {
-name:'POLICE + EMS',
-price:82,
+name:'joe',
+price:10,
 category:'scripts',
-image:'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'
+image:'https://picsum.photos/600/400?2'
 }
 ];
 
@@ -18,6 +18,7 @@ let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const container = document.getElementById('productsContainer');
 
 function renderProducts(category='all'){
+
 container.innerHTML='';
 
 let filtered = category === 'all'
@@ -25,31 +26,57 @@ let filtered = category === 'all'
 : products.filter(p=>p.category === category);
 
 filtered.forEach((product,index)=>{
+
 container.innerHTML += `
 <div class="card">
+
 <img src="${product.image}">
+
 <div class="card-info">
+
 <h3>${product.name}</h3>
-<div class="category">${product.category.toUpperCase()}</div>
+
+<div class="category">
+${product.category.toUpperCase()}
+</div>
+
 <p>$${product.price}</p>
-<button onclick="addToCart(${index})">Comprar</button>
+
+<button onclick="addToCart(${index})">
+Comprar
+</button>
+
 </div>
 </div>
 `;
+
 });
+
 }
 
 function addToCart(index){
+
 cart.push(products[index]);
+
 localStorage.setItem('cart', JSON.stringify(cart));
+
 updateCart();
-alert('Producto agregado al carrito');
+
+openCart();
+
+alert('Producto agregado correctamente');
+
 }
 
 function updateCart(){
+
 const cartItems = document.getElementById('cartItems');
+
 const cartTotal = document.getElementById('cartTotal');
+
 const cartCount = document.getElementById('cartCount');
+
+if(!cartItems) return;
 
 cartItems.innerHTML='';
 
@@ -61,50 +88,86 @@ total += Number(item.price);
 
 cartItems.innerHTML += `
 <div class="cart-item">
-<p>${item.name} - $${item.price}</p>
-<button onclick="removeCart(${index})">X</button>
+
+<div>
+<h4>${item.name}</h4>
+<p>$${item.price}</p>
+</div>
+
+<button onclick="removeCart(${index})">
+X
+</button>
+
 </div>
 `;
+
 });
 
 cartTotal.innerText = '$'+total;
+
+if(cartCount){
 cartCount.innerText = cart.length;
 }
 
+}
+
 function removeCart(index){
+
 cart.splice(index,1);
+
 localStorage.setItem('cart', JSON.stringify(cart));
+
 updateCart();
+
+}
+
+function openCart(){
+
+document.getElementById('cartPanel').classList.add('active');
+
+}
+
+function closeCart(){
+
+document.getElementById('cartPanel').classList.remove('active');
+
 }
 
 function toggleCart(){
+
 document.getElementById('cartPanel').classList.toggle('active');
+
 }
 
 function checkout(){
 
 if(cart.length === 0){
-alert('Carrito vacío');
-return;
-}
 
-const method = document.getElementById('paymentMethod').value;
+alert('El carrito está vacío');
+
+return;
+
+}
 
 let sales = JSON.parse(localStorage.getItem('sales')) || [];
 
 sales.push({
-products: cart,
-payment: method,
-date: new Date().toLocaleString()
+items:cart,
+date:new Date().toLocaleString()
 });
 
 localStorage.setItem('sales', JSON.stringify(sales));
 
-alert('Compra realizada correctamente mediante '+method);
+alert('Compra realizada correctamente');
 
 cart = [];
+
 localStorage.setItem('cart', JSON.stringify(cart));
+
 updateCart();
+
+closeCart();
+
 }
 
 function openAuth(){
@@ -127,7 +190,8 @@ users.push({name,email,password});
 
 localStorage.setItem('users', JSON.stringify(users));
 
-alert('Usuario registrado');
+alert('Usuario registrado correctamente');
+
 }
 
 function loginUser(){
@@ -140,22 +204,46 @@ let users = JSON.parse(localStorage.getItem('users')) || [];
 const found = users.find(u=>u.email === email && u.password === password);
 
 if(found){
+
 alert('Bienvenido '+found.name);
+
 closeAuth();
+
 }else{
+
 alert('Credenciales incorrectas');
+
 }
+
+}
+
+function googleLogin(){
+
+window.open('https://accounts.google.com/','_blank');
+
+}
+
+function facebookLogin(){
+
+window.open('https://facebook.com/login','_blank');
+
 }
 
 document.querySelectorAll('.category-btn').forEach(btn=>{
+
 btn.addEventListener('click', ()=>{
 
-document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.category-btn')
+.forEach(b=>b.classList.remove('active'));
+
 btn.classList.add('active');
 
 renderProducts(btn.dataset.category);
+
 });
+
 });
 
 renderProducts();
+
 updateCart();
