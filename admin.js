@@ -1,4 +1,3 @@
-
 const ADMIN_EMAIL = 'admin@auriastore.com';
 const ADMIN_PASSWORD = 'AURIA123';
 
@@ -7,22 +6,12 @@ const logged = localStorage.getItem('adminLogged');
 
 if(logged !== 'true'){
 document.body.innerHTML = `
-<div style="display:flex;justify-content:center;align-items:center;height:100vh;background:#050505;">
-<div style="background:#111;padding:40px;border-radius:25px;width:350px;">
-
-<h1 style="color:#ff0077;margin-bottom:20px;">ADMIN LOGIN</h1>
-
-<input id="email" placeholder="Correo"
-style="width:100%;padding:15px;margin-bottom:15px;background:#1a1a1a;border:none;border-radius:12px;color:white;">
-
-<input id="password" type="password" placeholder="Contraseña"
-style="width:100%;padding:15px;margin-bottom:20px;background:#1a1a1a;border:none;border-radius:12px;color:white;">
-
-<button onclick="login()"
-style="width:100%;padding:15px;background:#ff0077;border:none;border-radius:12px;color:white;">
-Ingresar
-</button>
-
+<div class="login-screen">
+<div class="login-box">
+<h1>ADMIN LOGIN</h1>
+<input id="email" placeholder="Correo">
+<input id="password" type="password" placeholder="Contraseña">
+<button onclick="login()">Ingresar</button>
 </div>
 </div>
 `;
@@ -41,7 +30,12 @@ alert('Acceso denegado');
 }
 }
 
-document.getElementById('imageInput')?.addEventListener('change', function(e){
+protectAdmin();
+
+const imageInput = document.getElementById('imageInput');
+
+if(imageInput){
+imageInput.addEventListener('change', function(e){
 const file = e.target.files[0];
 
 if(file){
@@ -55,13 +49,13 @@ document.getElementById('preview').style.display = 'block';
 reader.readAsDataURL(file);
 }
 });
+}
 
 function addProduct(){
 
 const name = document.getElementById('name').value;
 const price = document.getElementById('price').value;
 const category = document.getElementById('category').value;
-
 const image = document.getElementById('preview').src;
 
 let products = JSON.parse(localStorage.getItem('products')) || [];
@@ -78,4 +72,47 @@ localStorage.setItem('products', JSON.stringify(products));
 alert('Producto agregado correctamente');
 }
 
-protectAdmin();
+function changeTheme(){
+const color = document.getElementById('themeColor').value;
+localStorage.setItem('themeColor', color);
+document.documentElement.style.setProperty('--primary', color);
+alert('Color actualizado');
+}
+
+function loadSales(){
+
+const sales = JSON.parse(localStorage.getItem('sales')) || [];
+const container = document.getElementById('salesContainer');
+
+container.innerHTML='';
+
+sales.forEach(sale=>{
+container.innerHTML += `
+<div class="admin-card">
+<p><b>Fecha:</b> ${sale.date}</p>
+<p><b>Pago:</b> ${sale.payment}</p>
+<p><b>Productos:</b> ${sale.products.map(p=>p.name).join(', ')}</p>
+</div>
+`;
+});
+}
+
+function loadUsers(){
+
+const users = JSON.parse(localStorage.getItem('users')) || [];
+const container = document.getElementById('usersContainer');
+
+container.innerHTML='';
+
+users.forEach(user=>{
+container.innerHTML += `
+<div class="admin-card">
+<p>${user.name}</p>
+<p>${user.email}</p>
+</div>
+`;
+});
+}
+
+loadSales();
+loadUsers();
