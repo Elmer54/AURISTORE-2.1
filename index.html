@@ -16,10 +16,10 @@
 </div>
 
 <nav>
-<a class="category-btn active" data-category="all">Home</a>
-<a class="category-btn" data-category="scripts">Scripts</a>
-<a class="category-btn" data-category="maps">Maps</a>
-<a class="category-btn" data-category="packs">Packs</a>
+<a class="category-btn active">Home</a>
+<a>Scripts</a>
+<a>Maps</a>
+<a>Packs</a>
 <a href="admin.html">Admin</a>
 </nav>
 </div>
@@ -28,9 +28,41 @@
 
 <header class="topbar">
 
-<button class="login-btn" onclick="openAuth()">
+<div id="authContainer">
+
+<button class="login-btn" id="loginBtn" onclick="openAuth()">
 SIGN IN
 </button>
+
+<div class="user-menu hidden" id="userMenu">
+
+<div class="user-avatar" onclick="toggleUserPanel()">
+👤
+</div>
+
+<div class="user-dropdown" id="userDropdown">
+
+<h3 id="profileName">Usuario</h3>
+
+<input type="text" id="updateName" placeholder="Nuevo nombre">
+
+<input type="email" id="updateEmail" placeholder="Nuevo correo">
+
+<input type="password" id="updatePassword" placeholder="Nueva contraseña">
+
+<button onclick="updateProfile()">
+Actualizar Datos
+</button>
+
+<button onclick="logoutUser()">
+Cerrar Sesión
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 <div class="cart-icon" id="cartButton">
 <div class="cart-logo">🛒</div>
@@ -75,16 +107,21 @@ Finalizar Compra
 
 <div class="auth-box">
 
-<h2>Login</h2>
+<h2>Registro / Login</h2>
+
+<input type="text" id="userName" placeholder="Nombre">
 
 <input type="email" id="userEmail" placeholder="Correo">
+
 <input type="password" id="userPassword" placeholder="Contraseña">
+
+<button onclick="registerUser()">Registrarse</button>
 
 <button onclick="loginUser()">Ingresar</button>
 
-<button onclick="googleLogin()">Google</button>
+<button onclick="googleLogin()">Continuar con Google</button>
 
-<button onclick="facebookLogin()">Facebook</button>
+<button onclick="facebookLogin()">Continuar con Facebook</button>
 
 <button onclick="closeAuth()">Cerrar</button>
 
@@ -93,5 +130,6 @@ Finalizar Compra
 </div>
 
 <script src="app.js"></script>
+
 </body>
 </html>
