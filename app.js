@@ -1,134 +1,102 @@
-
-let products = JSON.parse(localStorage.getItem('products')) || [
+const products = [
 {
-name:'PACK PREMIUM',
-price:28,
-category:'packs',
+name:'FiveM Clothing Pack',
+price:23.50,
 image:'https://picsum.photos/500/300?1'
 },
 {
-name:'SCRIPT EMS',
-price:82,
-category:'scripts',
+name:'Police EMS Script',
+price:15.00,
 image:'https://picsum.photos/500/300?2'
 }
 ];
 
-let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cart = [];
 
-const container = document.getElementById('productsContainer');
+const productsContainer = document.getElementById('products');
+const cartItems = document.getElementById('cartItems');
 
-function renderProducts(category='all'){
-container.innerHTML='';
+function renderProducts(){
 
-let filtered = category === 'all'
-? products
-: products.filter(p=>p.category === category);
+products.forEach((product,index)=>{
 
-filtered.forEach((product,index)=>{
-container.innerHTML += `
-<div class="card">
+productsContainer.innerHTML += `
+<div class="product">
+
 <img src="${product.image}">
-<div class="card-info">
+
+<div class="info">
 <h3>${product.name}</h3>
-<p>$${product.price}</p>
-<button onclick="addToCart(${index})">Agregar al carrito</button>
+<p>USD ${product.price}</p>
+
+<button onclick="addToCart(${index})">
+Agregar al carrito
+</button>
+
 </div>
 </div>
 `;
+
 });
+
 }
 
 function addToCart(index){
+
 cart.push(products[index]);
-localStorage.setItem('cart', JSON.stringify(cart));
+
 renderCart();
+
 }
 
 function renderCart(){
-const items = document.getElementById('cartItems');
-const total = document.getElementById('cartTotal');
 
-items.innerHTML='';
+cartItems.innerHTML='';
 
-let totalPrice = 0;
+let total = 0;
 
 cart.forEach((item,index)=>{
-totalPrice += Number(item.price);
 
-items.innerHTML += `
+total += item.price;
+
+cartItems.innerHTML += `
 <div class="cart-item">
-<h3>${item.name}</h3>
-<p>$${item.price}</p>
-<button class="remove-btn" onclick="removeCart(${index})">Eliminar</button>
+
+<img src="${item.image}">
+
+<div>
+<h2>${item.name}</h2>
+<p>USD ${item.price}</p>
+
+<button class="remove-btn" onclick="removeItem(${index})">
+Eliminar
+</button>
+</div>
+
 </div>
 `;
+
 });
 
-total.innerText = 'Total: $' + totalPrice;
+document.getElementById('totalPrice').innerText =
+'Total: USD ' + total.toFixed(2);
+
 }
 
-function removeCart(index){
+function removeItem(index){
+
 cart.splice(index,1);
-localStorage.setItem('cart', JSON.stringify(cart));
-renderCart();
-}
 
-function toggleCart(){
-document.getElementById('cartPanel').classList.toggle('active');
+renderCart();
+
 }
 
 function checkout(){
 
-const orders = JSON.parse(localStorage.getItem('orders')) || [];
+alert('Redirigiendo al pago seguro...');
 
-orders.push({
-date:new Date().toLocaleString(),
-products:cart,
-status:'Pendiente'
-});
+window.location.href = 'payment.html';
 
-localStorage.setItem('orders', JSON.stringify(orders));
-
-alert('Compra realizada');
-
-cart=[];
-localStorage.setItem('cart', JSON.stringify(cart));
-renderCart();
-}
-
-document.querySelectorAll('.category-btn').forEach(btn=>{
-btn.addEventListener('click',()=>{
-renderProducts(btn.dataset.category);
-});
-});
-
-function openAuth(){
-document.getElementById('authModal').style.display='flex';
-}
-
-function closeAuth(){
-document.getElementById('authModal').style.display='none';
-}
-
-function registerUser(){
-
-const users = JSON.parse(localStorage.getItem('users')) || [];
-
-users.push({
-username:document.getElementById('username').value,
-email:document.getElementById('email').value
-});
-
-localStorage.setItem('users', JSON.stringify(users));
-
-alert('Usuario registrado');
-}
-
-function loginUser(){
-alert('Inicio de sesión correcto');
-closeAuth();
 }
 
 renderProducts();
-renderCart();
