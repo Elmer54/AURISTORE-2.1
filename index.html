@@ -15,15 +15,16 @@
     </div>
 
     <nav>
-        <a class="active" href="#">Home</a>
-        <a href="#">Scripts</a>
-        <a href="#">Maps</a>
-        <a href="#">Packs</a>
+        <a class="category-btn active" data-category="all">Home</a>
+        <a class="category-btn" data-category="scripts">Scripts</a>
+        <a class="category-btn" data-category="maps">Maps</a>
+        <a class="category-btn" data-category="packs">Packs</a>
         <a href="admin.html">Admin</a>
     </nav>
 </div>
 
 <div class="main-content">
+
 <header>
 <button class="login-btn">SIGN IN</button>
 </header>
@@ -31,21 +32,15 @@
 <section class="hero">
 <h2>WELCOME TO</h2>
 <h1>AURIASTORE</h1>
-<p>Marketplace premium para FiveM con scripts y contenido exclusivo.</p>
+<p>Marketplace premium para FiveM con scripts, packs, mapas y contenido exclusivo.</p>
 </section>
 
-<section class="products">
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop">
-<div class="card-info">
-<h3>PACK PREMIUM</h3>
-<p>€28 EUR</p>
-<button>Comprar</button>
-</div>
-</div>
-</section>
+<section class="products" id="productsContainer"></section>
+
 </div>
 
 <script src="app.js"></script>
 </body>
+</html>
+
 </html>
