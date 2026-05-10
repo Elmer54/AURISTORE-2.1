@@ -11,6 +11,7 @@
 <div class="main-content">
 
 <section class="hero">
+
 <h2>PANEL</h2>
 <h1>ADMINISTRADOR</h1>
 
@@ -25,31 +26,21 @@
 <option value="packs">Packs</option>
 </select>
 
-<input type="file" id="imageInput" accept=".png,.jpg,.jpeg,.webp">
-<img id="preview" class="preview-image" style="display:none;">
+<input type="file" id="imageInput">
 
-<button onclick="addProduct()">Agregar Producto</button>
+<img id="preview" class="preview-image">
 
-<hr>
-
-<h2>Configuración de Color</h2>
-<input type="color" id="themeColor">
-<button onclick="changeTheme()">Cambiar Color</button>
-
-<hr>
-
-<h2>Ventas Registradas</h2>
-<div id="salesContainer"></div>
-
-<hr>
-
-<h2>Usuarios Registrados</h2>
-<div id="usersContainer"></div>
+<button onclick="addProduct()">
+Agregar Producto
+</button>
 
 </div>
+
 </section>
+
 </div>
 
 <script src="admin.js"></script>
+
 </body>
 </html>
