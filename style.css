@@ -1,3 +1,6 @@
+:root{
+--primary:#ff0077;
+}
 
 *{
 margin:0;
@@ -28,7 +31,7 @@ font-weight:900;
 .logo span{
 font-size:55px;
 font-weight:900;
-color:#ff0077;
+color:var(--primary);
 }
 
 nav{
@@ -50,8 +53,8 @@ transition:0.3s;
 
 nav a:hover,
 nav .active{
-border:2px solid #ff0077;
-color:#ff0077;
+border:2px solid var(--primary);
+color:var(--primary);
 }
 
 .main-content{
@@ -68,17 +71,12 @@ margin-top:20px;
 }
 
 .hero h2{
-color:#ff0077;
+color:var(--primary);
 font-size:40px;
 }
 
 .hero h1{
-font-size:85px;
-}
-
-.hero p{
-margin-top:15px;
-color:#ccc;
+font-size:70px;
 }
 
 .products{
@@ -92,12 +90,6 @@ gap:30px;
 background:#111;
 border-radius:25px;
 overflow:hidden;
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 25px #ff007744;
 }
 
 .card img{
@@ -110,59 +102,92 @@ object-fit:cover;
 padding:20px;
 }
 
-.card-info h3{
-margin-bottom:10px;
-}
-
-.card-info .category{
-color:#aaa;
-margin-bottom:10px;
-}
-
 .card-info p{
-color:#ff0077;
+color:var(--primary);
 font-size:22px;
-margin-bottom:15px;
+margin:15px 0;
 }
 
-.card-info button{
-width:100%;
-padding:15px;
-background:#ff0077;
+.card-info button,
+.login-btn,
+.admin-form button,
+.cart-panel button,
+.auth-box button{
+background:var(--primary);
 border:none;
-border-radius:12px;
+padding:15px;
 color:white;
+border-radius:12px;
 cursor:pointer;
 }
 
-.login-btn{
-background:#111;
-border:1px solid #333;
-padding:15px 30px;
-color:white;
-border-radius:15px;
-float:right;
+.topbar{
+display:flex;
+justify-content:flex-end;
+gap:20px;
 }
 
+.cart-box{
+background:#111;
+padding:15px 20px;
+border-radius:12px;
+cursor:pointer;
+}
+
+.cart-panel{
+position:fixed;
+right:-450px;
+top:0;
+width:400px;
+height:100vh;
+background:#111;
+padding:30px;
+transition:0.4s;
+overflow:auto;
+}
+
+.cart-panel.active{
+right:0;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+margin:15px 0;
+background:#1a1a1a;
+padding:10px;
+border-radius:10px;
+}
+
+.auth-modal{
+position:fixed;
+inset:0;
+background:#000000cc;
+display:none;
+justify-content:center;
+align-items:center;
+}
+
+.auth-box,
+.login-box{
+background:#111;
+padding:30px;
+border-radius:20px;
+width:350px;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.auth-box input,
+.login-box input,
 .admin-form input,
 .admin-form select{
-width:100%;
 padding:15px;
-margin-bottom:15px;
 background:#1a1a1a;
 border:none;
-border-radius:12px;
 color:white;
-}
-
-.admin-form button{
-width:100%;
-padding:15px;
-background:#ff0077;
-border:none;
-border-radius:12px;
-color:white;
-cursor:pointer;
+border-radius:10px;
 }
 
 .preview-image{
@@ -170,5 +195,20 @@ width:100%;
 height:250px;
 object-fit:cover;
 border-radius:20px;
+margin:15px 0;
+}
+
+.admin-card{
+background:#1a1a1a;
+padding:15px;
+border-radius:15px;
 margin-top:15px;
+}
+
+.login-screen{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+width:100%;
 }
