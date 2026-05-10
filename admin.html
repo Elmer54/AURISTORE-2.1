@@ -3,24 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin AURIASTORE</title>
+<title>Administrador</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="main-content">
-    <section class="hero">
-        <h2>PANEL</h2>
-        <h1>ADMINISTRADOR</h1>
+<section class="hero">
 
-        <input type="text" id="name" placeholder="Nombre producto"><br><br>
-        <input type="text" id="price" placeholder="Precio"><br><br>
-        <input type="text" id="image" placeholder="URL imagen"><br><br>
+<h2>PANEL</h2>
+<h1>ADMINISTRADOR</h1>
 
-        <button onclick="addProduct()">Agregar Producto</button>
+<div id="adminContent">
+<input type="text" id="productName" placeholder="Nombre producto"><br><br>
+<input type="text" id="productPrice" placeholder="Precio"><br><br>
+<input type="text" id="productImage" placeholder="URL imagen"><br><br>
 
-        <div id="result"></div>
-    </section>
+<button onclick="addProduct()">Agregar Producto</button>
+
+<div id="adminProducts"></div>
+
+<br><br>
+
+<button onclick="logoutAdmin()">Cerrar Sesión</button>
+</div>
+
+</section>
 </div>
 
 <script src="admin.js"></script>
