@@ -62,8 +62,6 @@ localStorage.setItem('cart', JSON.stringify(cart));
 
 updateCart();
 
-openCart();
-
 alert('Producto agregado correctamente');
 
 }
@@ -105,9 +103,7 @@ X
 
 cartTotal.innerText = '$'+total;
 
-if(cartCount){
 cartCount.innerText = cart.length;
-}
 
 }
 
@@ -118,24 +114,6 @@ cart.splice(index,1);
 localStorage.setItem('cart', JSON.stringify(cart));
 
 updateCart();
-
-}
-
-function openCart(){
-
-document.getElementById('cartPanel').classList.add('active');
-
-}
-
-function closeCart(){
-
-document.getElementById('cartPanel').classList.remove('active');
-
-}
-
-function toggleCart(){
-
-document.getElementById('cartPanel').classList.toggle('active');
 
 }
 
@@ -166,7 +144,8 @@ localStorage.setItem('cart', JSON.stringify(cart));
 
 updateCart();
 
-closeCart();
+document.getElementById('cartPanel')
+.classList.remove('active');
 
 }
 
@@ -228,6 +207,15 @@ function facebookLogin(){
 window.open('https://facebook.com/login','_blank');
 
 }
+
+const cartButton = document.getElementById('cartButton');
+
+cartButton.addEventListener('click', ()=>{
+
+document.getElementById('cartPanel')
+.classList.toggle('active');
+
+});
 
 document.querySelectorAll('.category-btn').forEach(btn=>{
 
