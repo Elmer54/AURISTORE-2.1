@@ -8,62 +8,34 @@
 </head>
 <body>
 
-<header class="topbar">
-<div class="logo">AURIASTORE</div>
+<div class="sidebar">
+    <div class="logo">
+        <h1>AURIA</h1>
+        <span>STORE</span>
+    </div>
 
-<div class="search-box">
-<input type="text" placeholder="Busca lo que se te ocurra">
+    <nav>
+        <a class="category-btn active" data-category="all">Home</a>
+        <a class="category-btn" data-category="scripts">Scripts</a>
+        <a class="category-btn" data-category="maps">Maps</a>
+        <a class="category-btn" data-category="packs">Packs</a>
+        <a href="admin.html">Admin</a>
+    </nav>
 </div>
 
-<div class="actions">
-<button onclick="openCart()">🛒 Carrito</button>
-</div>
+<div class="main-content">
+
+<header>
+<button class="login-btn">SIGN IN</button>
 </header>
 
-<div class="container">
+<section class="hero">
+<h2>WELCOME TO</h2>
+<h1>AURIASTORE</h1>
+<p>Marketplace premium para FiveM con scripts, packs, mapas y contenido exclusivo.</p>
+</section>
 
-<div class="products" id="products"></div>
-
-<div class="cart-page" id="cartPage">
-
-<h1>Tu carrito</h1>
-
-<div id="cartItems"></div>
-
-<div class="payment-box">
-
-<h2>Forma de pago</h2>
-
-<div class="payment-method">
-<input type="radio" name="pay" checked>
-<label>Tarjeta de crédito</label>
-</div>
-
-<div class="cards">
-<div>VISA</div>
-<div>MASTERCARD</div>
-<div>PAYPAL</div>
-</div>
-
-<div class="payment-method">
-<input type="radio" name="pay">
-<label>Transferencia bancaria</label>
-</div>
-
-<div class="bank-info">
-<p><strong>Banco:</strong> Pichincha</p>
-<p><strong>Cuenta:</strong> 1234567890</p>
-<p><strong>Nombre:</strong> AURIASTORE</p>
-<p><strong>Email:</strong> pagos@auriastore.com</p>
-</div>
-
-<h2 id="totalPrice">Total: $0</h2>
-
-<button class="checkout-btn" onclick="checkout()">
-Finalizar compra
-</button>
-
-</div>
+<section class="products" id="productsContainer"></section>
 
 </div>
 

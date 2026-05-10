@@ -1,102 +1,57 @@
-const products = [
+
+let products = JSON.parse(localStorage.getItem('products')) || [
 {
-name:'FiveM Clothing Pack',
-price:23.50,
-image:'https://picsum.photos/500/300?1'
+name:'PACK PREMIUM',
+price:'€28 EUR',
+category:'packs',
+image:'https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop'
 },
 {
-name:'Police EMS Script',
-price:15.00,
-image:'https://picsum.photos/500/300?2'
+name:'POLICE + EMS',
+price:'€82 EUR',
+category:'scripts',
+image:'https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop'
+},
+{
+name:'UNIQUE SCRIPTS',
+price:'€49 EUR',
+category:'maps',
+image:'https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1200&auto=format&fit=crop'
 }
 ];
 
-let cart = [];
+const container = document.getElementById('productsContainer');
 
-const productsContainer = document.getElementById('products');
-const cartItems = document.getElementById('cartItems');
+function renderProducts(category='all'){
+container.innerHTML='';
 
-function renderProducts(){
+let filtered = category === 'all'
+? products
+: products.filter(p=>p.category === category);
 
-products.forEach((product,index)=>{
-
-productsContainer.innerHTML += `
-<div class="product">
-
+filtered.forEach(product=>{
+container.innerHTML += `
+<div class="card">
 <img src="${product.image}">
-
-<div class="info">
+<div class="card-info">
 <h3>${product.name}</h3>
-<p>USD ${product.price}</p>
-
-<button onclick="addToCart(${index})">
-Agregar al carrito
-</button>
-
+<div class="category">${product.category.toUpperCase()}</div>
+<p>${product.price}</p>
+<button>Comprar</button>
 </div>
 </div>
 `;
-
 });
-
 }
 
-function addToCart(index){
+document.querySelectorAll('.category-btn').forEach(btn=>{
+btn.addEventListener('click', ()=>{
 
-cart.push(products[index]);
+document.querySelectorAll('.category-btn').forEach(b=>b.classList.remove('active'));
+btn.classList.add('active');
 
-renderCart();
-
-}
-
-function renderCart(){
-
-cartItems.innerHTML='';
-
-let total = 0;
-
-cart.forEach((item,index)=>{
-
-total += item.price;
-
-cartItems.innerHTML += `
-<div class="cart-item">
-
-<img src="${item.image}">
-
-<div>
-<h2>${item.name}</h2>
-<p>USD ${item.price}</p>
-
-<button class="remove-btn" onclick="removeItem(${index})">
-Eliminar
-</button>
-</div>
-
-</div>
-`;
-
+renderProducts(btn.dataset.category);
 });
-
-document.getElementById('totalPrice').innerText =
-'Total: USD ' + total.toFixed(2);
-
-}
-
-function removeItem(index){
-
-cart.splice(index,1);
-
-renderCart();
-
-}
-
-function checkout(){
-
-alert('Redirigiendo al pago seguro...');
-
-window.location.href = 'payment.html';
-
-}
+});
 
 renderProducts();
