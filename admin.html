@@ -4,19 +4,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel Administrador</title>
+<title>Panel Administrador PRO</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-<div class="panel">
+<div class="sidebar">
 
-<h2>PANEL</h2>
-<h1>ADMINISTRADOR</h1>
-
-<div class="tabs">
+<h1>AURIA</h1>
+<h2>ADMIN</h2>
 
 <button onclick="showTab('products')">Productos</button>
 <button onclick="showTab('users')">Usuarios</button>
@@ -24,61 +22,144 @@
 
 </div>
 
+<div class="content">
+
+<div class="header">
+<h1>Panel Administrador</h1>
+<p>Control total de usuarios, productos y permisos</p>
+</div>
+
 <div id="products" class="tab active">
 
-<h3>Agregar Productos</h3>
+<div class="card">
 
-<input type="text" id="name" placeholder="Nombre producto">
+<h2>Agregar Productos</h2>
 
-<input type="number" id="price" placeholder="Precio">
+<div class="form-grid">
 
-<select id="category">
+<input type="text" placeholder="Nombre producto">
+
+<input type="number" placeholder="Precio">
+
+<select>
 <option>Scripts</option>
 <option>Maps</option>
 <option>Packs</option>
 </select>
 
-<input type="file" id="image">
+<input type="file">
 
-<button onclick="addProduct()">
+</div>
+
+<button class="main-btn">
 Agregar Producto
 </button>
 
 </div>
 
+</div>
+
 <div id="users" class="tab">
 
-<h3>Registro de Usuarios</h3>
+<div class="card">
+
+<h2>Registro de Usuarios</h2>
+
+<div class="table-container">
 
 <table>
 
 <thead>
 <tr>
+<th>ID</th>
 <th>Nombre</th>
 <th>Correo</th>
 <th>Contraseña</th>
 <th>Fecha</th>
 <th>Hora</th>
+<th>Estado</th>
 </tr>
 </thead>
 
-<tbody id="usersTable"></tbody>
+<tbody>
+
+<tr>
+<td>#001</td>
+<td>Joe Gamer</td>
+<td>joe@gmail.com</td>
+<td>••••••••</td>
+<td>10/05/2026</td>
+<td>14:35</td>
+<td><span class="status online">Activo</span></td>
+</tr>
+
+<tr>
+<td>#002</td>
+<td>Carlos</td>
+<td>carlos@gmail.com</td>
+<td>••••••••</td>
+<td>10/05/2026</td>
+<td>15:20</td>
+<td><span class="status offline">Offline</span></td>
+</tr>
+
+</tbody>
 
 </table>
 
 </div>
 
+</div>
+
+</div>
+
 <div id="admins" class="tab">
 
-<h3>Permisos de Administrador</h3>
+<div class="card">
 
-<input type="email" id="adminEmail" placeholder="Correo del usuario">
+<h2>Permisos de Administrador</h2>
 
-<button onclick="giveAdmin()">
-Dar Permiso de Administrador
+<div class="admin-form">
+
+<input type="email" placeholder="Correo del usuario">
+
+<button class="main-btn">
+Dar Permiso
 </button>
 
-<div id="adminList"></div>
+</div>
+
+<div class="admins-list">
+
+<div class="admin-card">
+
+<div>
+<h3>admin@gmail.com</h3>
+<p>Administrador Principal</p>
+</div>
+
+<button class="delete-btn">
+Eliminar
+</button>
+
+</div>
+
+<div class="admin-card">
+
+<div>
+<h3>moderador@gmail.com</h3>
+<p>Moderador</p>
+</div>
+
+<button class="delete-btn">
+Eliminar
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
